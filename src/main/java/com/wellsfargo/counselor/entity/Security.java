@@ -15,7 +15,7 @@ public class Security {
     
     // Relationship annotation: Many Securities to One Portfolio
     @ManyToOne
-    private long portfolioId;
+    private Portfolio portfolio;
 
     @Column(nullable = false)
     private String name;
@@ -24,16 +24,22 @@ public class Security {
     private String category;
 
     @Column(nullable = false)
-    private double purchasePrice;
+    private float purchasePrice;
 
     @Column(nullable = false)
     private String purchaseDate;
 
     @Column(nullable = false)
-    private int quantity;
+    private float quantity;
 
-    public Security(String name, String category, double purchasePrice, String purchaseDate, int quantity)
+    protected Security()
     {
+
+    }
+
+    public Security(Portfolio portfolio, String name, String category, float purchasePrice, String purchaseDate, float quantity)
+    {
+        this.portfolio = portfolio;
         this.name = name;
         this.category = category;
         this.purchasePrice = purchasePrice;
@@ -47,9 +53,9 @@ public class Security {
         return this.securityId;
     }
 
-    public long getPortfolioId()
+    public Portfolio getPortfolio()
     {
-        return this.portfolioId;
+        return this.portfolio;
     }
 
     public String getName()
@@ -62,7 +68,7 @@ public class Security {
         return this.category;
     }
 
-    public double getPurchasePrice()
+    public float getPurchasePrice()
     {
         return this.purchasePrice;
     }
@@ -72,15 +78,15 @@ public class Security {
         return this.purchaseDate;
     }
 
-    public int getQuantity()
+    public float getQuantity()
     {
         return this.quantity;
     }
 
     // setters
-    public void setPortfolioId(long portfolioId)
+    public void setPortfolio(Portfolio portfolio)
     {
-        this.portfolioId = portfolioId;
+        this.portfolio = portfolio;
     }
 
     public void setName(String name)
@@ -93,7 +99,7 @@ public class Security {
         this.category = category;
     }
 
-    public void setPurchasePrice(double purchasePrice)
+    public void setPurchasePrice(float purchasePrice)
     {
         this.purchasePrice = purchasePrice;
     }
@@ -103,7 +109,7 @@ public class Security {
         this.purchaseDate = purchaseDate;
     }
 
-    public void setQuantity(int quantity)
+    public void setQuantity(float quantity)
     {
         this.quantity = quantity;
     }
