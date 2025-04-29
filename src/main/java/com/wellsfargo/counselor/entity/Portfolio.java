@@ -15,13 +15,19 @@ public class Portfolio {
 
     // Relationship annotation: Many Portfolios to One Client
     @ManyToOne
-    private long clientId;
+    private Client client;
 
     @Column(nullable = false)
     private String creationDate;
 
-    public Portfolio(String creationDate)
+    protected Portfolio()
     {
+
+    }
+
+    public Portfolio(Client client, String creationDate)
+    {
+        this.client = client;
         this.creationDate = creationDate;
     }
 
@@ -31,9 +37,9 @@ public class Portfolio {
         return this.portfolioId;
     }
 
-    public long getClientId()
+    public Client getClient()
     {
-        return this.clientId;
+        return this.client;
     }
 
     public String getCreationDate()
@@ -42,9 +48,9 @@ public class Portfolio {
     }
 
     // setters
-    public void setClientId(long clientId)
+    public void setClient(Client client)
     {
-        this.clientId = clientId;
+        this.client = client;
     }
 
     public void setCreationDate(String creationDate)

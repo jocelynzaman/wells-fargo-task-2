@@ -15,7 +15,7 @@ public class Client {
 
     // Relationship annotation: Many Clients to One Advisor
     @ManyToOne
-    private long advisorId;
+    private Advisor advisor;
 
     @Column(nullable = false)
     private String firstName;
@@ -32,9 +32,14 @@ public class Client {
     @Column(nullable = false)
     private String email;
 
-
-    public Client(String firstName, String lastName, String address, String phone, String email)
+    protected Client() 
     {
+
+    }
+
+    public Client(Advisor advisor, String firstName, String lastName, String address, String phone, String email)
+    {
+        this.advisor = advisor;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -49,9 +54,9 @@ public class Client {
         return this.clientId;
     }
 
-    public long getAdvisorId()
+    public Advisor getAdvisor()
     {
-        return this.advisorId;
+        return this.advisor;
     }
 
     public String getFirstName()
@@ -81,9 +86,9 @@ public class Client {
 
     // setters
 
-    public void setAdvisorId(long advisorId)
+    public void setAdvisor(Advisor advisor)
     {
-        this.advisorId = advisorId;
+        this.advisor = advisor;
     }
 
     public void setFirstName(String firstName)
